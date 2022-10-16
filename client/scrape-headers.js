@@ -2,6 +2,12 @@
 var headlines1 = document.getElementsByClassName("cd__headline-text");
 var headlines2 = document.getElementsByClassName("story__title");
 var headlines3 = document.getElementsByClassName("news-title");
+var headlines4 = document.getElementsByClassName("sc-rnw73m-7");
+var headlines5 = document.getElementsByClassName("sc-abcdd5a8-0");
+var headlines6 = document.getElementsByClassName("sc-64f6d9a0-0");
+
+
+
 
 // Check if headlines have values and assign variables "headlines" and "web"
 if (headlines1["length"] > 0) {
@@ -13,6 +19,13 @@ if (headlines1["length"] > 0) {
 } else if (headlines3["length"] > 0) {
     var headlines = document.getElementsByClassName("news-title");
     var web = "DailyFeed";
+} else if (headlines4["length"] > 0) {
+    var headlines = document.getElementsByClassName("sc-rnw73m-7");
+    var web = "20 Minuten";
+} else if (headlines5["length"] > 0 || headlines6["length"] > 0) {
+    var headlines = document.querySelectorAll('.sc-abcdd5a8-0, .sc-64f6d9a0-0')  
+    console.log(headlines)
+    var web = "Blick";
 }
 
 // URL of the server with the running backend

@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from model import ClickbaitClassifier
+from deep_translator import GoogleTranslator
 
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
@@ -30,6 +31,9 @@ def get_prediction():
     req = request.get_json()
     website = req["website"]
     headlineTexts = req["headlineTexts"]
+
+    if website == "20 Minuten" or website == "Blick":
+         headlineTexts = [GoogleTranslator(source='de', target='en').translate(hl) for hl in headlineTexts]
 
     predictions = []
     for headline in headlineTexts:

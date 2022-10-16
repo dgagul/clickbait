@@ -20,7 +20,7 @@
     ],
     "content_scripts": [
         {
-            "matches": ["*://*.dailyfeed.co.uk/*", "*://*.edition.cnn.com/*", "*://*.mirror.co.uk/*"],
+            "matches": ["*://*.dailyfeed.co.uk/*", "*://*.edition.cnn.com/*", "*://*.mirror.co.uk/*", "*://*.20min.ch/*", "*://*.blick.ch/*"],
             "js": ["scrape-headers.js"],
             "css": ["clickbait.css"]
         }
