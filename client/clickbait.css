@@ -19,7 +19,7 @@
     top: -50px;
     left: 0px;
     color: black!important;
-    font-family: 'proxima nova';
+    font-family: 'Open Sans';
     padding: 4px 0;
     font-weight: bold;
 
@@ -32,3 +32,4 @@
 .relative {
     position: relative;
 }
+
