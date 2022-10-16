@@ -1,0 +1,6 @@
+*.idea
+*.xml
+*__pycache__
+client/scratch*
+server/scratch*
+server/src/scratch*

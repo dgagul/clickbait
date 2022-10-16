@@ -1,0 +1,23 @@
+<!doctype html>
+<!--
+This page is shown when the extension button is clicked, because the
+"browser_action" field in manifest.json contains the "default_popup" key with
+value "popup.html".
+-->
+<html>
+    <head>
+        <title>Getting Started Extension's Popup</title>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+    <body>
+        <div id="header">
+            <h1>ClickBait detector</h1>
+        </div>
+        <div class="wrapper">
+            <button id="get-Cbt-btn">Detect ClickBait</button>
+        </div>
+        <h2 class="cd__headline-text">1. Headline</h2>
+        <h2 class="cd__headline-text">2. Headline</h2>
+        <script src="popup.js"></script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{
+
+    "manifest_version": 2,
+    "name": "ClickBait detector",
+    "version": "1.0",
+    "description": "Classifies headlines in the CNN news website and warns users of potential ClickBait",
+    "icons": {
+        "16": "images/icon-circle.png",
+        "48": "images/icon-circle.png",
+        "128": "images/icon-circle.png"
+    },
+    "browser_action": {
+        "default_icon": "images/icon-circle.png",
+        "default_title": "ClickBait detector",
+        "default_popup": "popup/popup.html"
+    },
+    "permissions": [
+        "activeTab",
+        "https://ajax.googleapis.com/"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["*://*.dailyfeed.co.uk/*", "*://*.edition.cnn.com/*", "*://*.mirror.co.uk/*"],
+            "js": ["scrape-headers.js"],
+            "css": ["clickbait.css"]
+        }
+    ]
+}
