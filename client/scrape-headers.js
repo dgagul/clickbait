@@ -46,22 +46,26 @@ const sendHttpRequest = (method, url, data) => {
     return promise;
 };
 
-
+// Prepare payload
+var headlineTexts = []
 for(i=0; i< headlines.length; i++) {
-    console.log(headlines[i].textContent)
-    const cbt_headline = headlines[i]
-    const idx = i;
-    sendHttpRequest("POST", localhost, {headline: headlines[i].textContent, website: web}).then(responseData => {
-        //if (responseData[0]["label"] == "CLICKBAIT") {
-        if (responseData[0]["label"] == "Clickbait") {
-            console.log("******was clickbait******")
+    headlineTexts[i] = headlines[i].textContent
+};
+
+// Function to send request and handle response
+sendHttpRequest("POST", localhost, {headlineTexts: headlineTexts, website: web}).then(responseData => {
+    for(i=0; i< responseData.length; i++) {
+        const cbt_headline = headlines[i]
+        const idx = i;
+        if (responseData[i][0]["label"] == "Clickbait") {
+            console.log("******clickbait******")
             console.log(cbt_headline.textContent)
-            console.log(responseData);
+            console.log(responseData[i]);
             cbt_headline.style.color = "#D3D3D3"
             cbt_headline.classList.toggle('clickbait');
             cbt_headline.setAttribute("id", `cb${idx}`);
             var div = document.createElement("div")
-            div.insertAdjacentText('beforeend',`This link is probably (${responseData[0]["score"]}%) clickbait.`);
+            div.insertAdjacentText('beforeend',`This link is probably (${responseData[i][0]["score"]}%) clickbait.`);
             div.classList.toggle('cb-information');
             div.classList.toggle('font--16px');
             div.setAttribute("id",`info${idx}`);
@@ -69,8 +73,15 @@ for(i=0; i< headlines.length; i++) {
             parentDiv.classList.toggle('relative');
             parentDiv.insertBefore(div, cbt_headline)
         };
-    });
-};
+    };
+});
+
+
+
+
+
+
+
 
 
 

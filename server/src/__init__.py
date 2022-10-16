@@ -29,12 +29,17 @@ def get_statistics():
 def get_prediction():
     req = request.get_json()
     website = req["website"]
-    headline = req["headline"]
-    prediction = classifier.predict(headline)
-    prediction[0]["score"] = int(str(prediction[0]["score"]*100)[0:2])
-    if website not in statistics.keys():
-        statistics[website] = [0,0]
-    if prediction[0]["label"] == "Clickbait":
-        statistics[website][0] += 1
-    statistics[website][1] += 1
-    return jsonify(prediction)
+    headlineTexts = req["headlineTexts"]
+
+    predictions = []
+    for headline in headlineTexts:
+        prediction = classifier.predict(headline)
+        prediction[0]["score"] = int(str(prediction[0]["score"]*100)[0:2])
+        if website not in statistics.keys():
+            statistics[website] = [0,0]
+        if prediction[0]["label"] == "Clickbait":
+            statistics[website][0] += 1
+        statistics[website][1] += 1
+        predictions.append(prediction)
+
+    return jsonify(predictions)
